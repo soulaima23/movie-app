@@ -1,23 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+import { moviedata } from './component/data';
+import Filter from './component/Filter/Filter';
+import MovieList from './component/MovieList/MovieList';
+import AddMovie from './component/AddMovie/AddMovie';
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+
 
 function App() {
+  const [Movies, setfirst] = useState(moviedata)
+  const [title, settitle] = useState("")
+
+  const handleChange = (e) =>{
+  settitle(e.target.value)
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Filter handleChange={handleChange} title={title}/>
+      <MovieList Movies={Movies.filter(movie=>movie.title.toUpperCase().includes(title.toUpperCase()))}/>
+      <AddMovie/>
     </div>
   );
 }
