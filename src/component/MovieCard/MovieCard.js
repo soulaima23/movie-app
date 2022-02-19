@@ -2,18 +2,19 @@ import React from 'react'
 import { Button, Card } from 'react-bootstrap'
 import { moviedata } from '../data'
 import './MovieCard.css'
+import {Link} from 'react-router-dom';
 
 const MovieCard = ({movie}) => {
   return (
     <div className='cc'>
-      <Card style={{margin:'20px'}}>
+      <Card className='cc'>
     <Card.Img variant="top" src={movie.posterUrl}  />
     <Card.Body>
       <Card.Title className='title'>{movie.title}</Card.Title>
       <Card.Text className='vv'>
-        {movie.description}
+       
       </Card.Text>
-      <Button variant="primary" >Go somewhere</Button>
+     <Link to={`/Description/${movie.id}`}> <Button variant="primary" >Go somewhere</Button></Link>
     </Card.Body>
   </Card></div>
   )
